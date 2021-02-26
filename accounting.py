@@ -60,12 +60,12 @@ melon_cost = 1.00
 #           f"expected ${customer6_expected:.2f}")
 
 
-
+melon_cost = 1.00
 #Create a function that takes in Customer orders from txt file.
 def customer_orders_paid_vs_expected(txt_file):
     """cleans up txt file and provides customer paid vs expected"""
     
-    melon_cost = 1.00
+   
 
     over_paid_customers = []
     under_paid_customers = []
@@ -77,7 +77,7 @@ def customer_orders_paid_vs_expected(txt_file):
         words = line.split('|')
     
     #customer number, name, melon amount and how much paid
-    customer_num = int(words[0])
+    order_num = int(words[0])
     customer_name = words[1]
     melon_amt = int(words[2])
     customer_paid = float(words[3])
@@ -86,31 +86,31 @@ def customer_orders_paid_vs_expected(txt_file):
     customer_expected = melon_amt * melon_cost
 
     #if customer under paid we had them to a list for future payment
-    if  customer_expected > customer_paid:
+    if  customer_expected < customer_paid:
         
         #adding customers name and num to under-paid list
         over_paid_customers.append(customer_name)
-        over_paid_customers.append(customer_num)
+        over_paid_customers.append(order_num)
         
         #calculating refund amount
         refund_amount = customer_paid - customer_expected 
         
-        print(f"{customer_num} {customer_name} paid ${customer_paid:.2f},",
-          f"expected ${customer_expected:.2f}, ${refund_amount:.2f} to be refunded")
+        print(f"Order num:{order_num}, customer name: {customer_name}, paid ${customer_paid:.2f},",
+          f"expected ${customer_expected:.2f}, ${refund_amount:.2f} to be refunded.")
         
 
     #if customer over paid we add customer to list for repayment
-    if customer_expected < customer_paid:
+    if customer_expected > customer_paid:
         
         #adding customers name and num to over-paid list
         under_paid_customers.append(customer_name)
-        under_paid_customers.append(customer_num)
+        under_paid_customers.append(order_num)
         
         #calculating amount owed
         owed_amount = customer_expected - customer_paid
         
-        print(f"{customer_name} paid ${customer_paid:.2f},",
-          f"expected ${customer_expected:.2f}, ${owed_amount:.2f} to be billed")
+        print(f"Order num: {order_num}, customer name: {customer_name}, paid ${customer_paid:.2f},",
+          f"expected ${customer_expected:.2f}, ${owed_amount:.2f} to be billed.")
     
     #closing text file    
     customer_orders.close()
