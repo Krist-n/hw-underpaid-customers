@@ -60,7 +60,7 @@ melon_cost = 1.00
 #           f"expected ${customer6_expected:.2f}")
 
 
-melon_cost = 1.00
+MELON_COST = 1.00
 #Create a function that takes in Customer orders from txt file.
 def customer_orders_paid_vs_expected(txt_file):
     """cleans up txt file and provides customer paid vs expected"""
@@ -116,3 +116,5 @@ def customer_orders_paid_vs_expected(txt_file):
     customer_orders.close()
           
 customer_orders_paid_vs_expected("customer-orders.txt")
+
+#MELONS_COST is capitalized because this price should not be changed.
